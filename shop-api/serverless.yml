@@ -20,9 +20,8 @@ custom:
       APP_ENV: prd
 
 package:
-  exclude:
-    - ./**
-  include:
+  patterns:
+    - '!./**'
     - ./bin/**
 
 functions:
