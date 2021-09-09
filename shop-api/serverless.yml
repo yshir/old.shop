@@ -7,9 +7,7 @@ provider:
   runtime: go1.x
   stage: ${opt:stage, "dev"}
   region: ${opt:region, "ap-northeast-1"}
-  environment:
-    STAGE: ${self:provider.stage}
-    APP_ENV: ${self:provider.stage}
+  environment: ${file(.env.yml)}
 
 package:
   patterns:

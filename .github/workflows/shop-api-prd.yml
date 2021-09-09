@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      APP_ENV: prd
+      STAGE: prd
 
     steps:
       - uses: actions/checkout@v2
@@ -27,6 +27,13 @@ jobs:
         run: |
           npm i -g serverless
 
+      - name: Setting env
+        run: |
+          echo -n > .env.yml
+          echo "APP_ENV: ${{ env.STAGE }}"       >> .env.yml
+          echo "APP_REVISION: ${{ github.sha }}" >> .env.yml
+        working-directory: ./shop-api
+
       - name: Build
         run: |
           make build
@@ -34,7 +41,7 @@ jobs:
 
       - name: Deploy
         run: |
-          sls deploy --stage prd
+          sls deploy --stage ${{ env.STAGE }}
         working-directory: ./shop-api
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
