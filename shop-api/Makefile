@@ -10,3 +10,7 @@ build: gomodgen
 .PHONY: clean
 clean:
 	rm -rf ./bin ./vendor *.test *.tmp
+
+.PHONY: todo
+todo:
+	cat .private/TODO.md
