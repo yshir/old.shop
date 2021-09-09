@@ -1,13 +1,12 @@
 .PHONY: gomodgen
 gomodgen:
-	chmod u+x gomod.sh
-	./gomod.sh
+	chmod u+x gomod.sh && ./gomod.sh
 
 .PHONY: build
 build: gomodgen
-	chmod u+x gobuild.sh
-	./gobuild.sh
+	chmod u+x gobuild.sh && ./gobuild.sh
+	chmod u+x fnbuild.sh && ./fnbuild.sh
 
 .PHONY: clean
 clean:
-	rm -rf ./bin ./vendor go.sum
+	rm -rf ./bin ./vendor *.test *.tmp

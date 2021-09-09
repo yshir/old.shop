@@ -37,6 +37,7 @@ jobs:
       - name: Build
         run: |
           make build
+          cat functions.yml
         working-directory: ./shop-api
 
       - name: Deploy

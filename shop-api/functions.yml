@@ -1,7 +1,0 @@
-ping:
-  handler: bin/get-ping
-  name: ${self:service}-${self:provider.stage}--get-ping
-  events:
-    - httpApi:
-        path: /ping
-        method: get

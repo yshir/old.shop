@@ -22,3 +22,6 @@ vendor
 
 .env
 .env.yml
+
+functions.yml
+functions.yml.tmp
