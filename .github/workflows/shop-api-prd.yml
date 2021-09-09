@@ -1,0 +1,33 @@
+name: Production CI for Shop API
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'shop-api/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_ENV: prd
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Deploy
+        run: |
+          echo Deploy
+
+      - name: Notify result to slack
+        uses: homoluctus/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: '*Production CI for Shop API*'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
