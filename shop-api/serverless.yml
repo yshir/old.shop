@@ -9,15 +9,7 @@ provider:
   region: ${opt:region, "ap-northeast-1"}
   environment:
     STAGE: ${self:provider.stage}
-
-custom:
-  environment:
-    dev:
-      APP_ENV: dev
-    stg:
-      APP_ENV: stg
-    prd:
-      APP_ENV: prd
+    APP_ENV: ${self:provider.stage}
 
 package:
   patterns:
@@ -28,7 +20,6 @@ functions:
   hello:
     handler: bin/hello
     name: ${self:service}-${self:provider.stage}--hello
-    environment: ${self:custom.environment.${self:provider.stage}}
     events:
       - httpApi:
           path: /hello
@@ -37,7 +28,6 @@ functions:
   world:
     handler: bin/world
     name: ${self:service}-${self:provider.stage}--world
-    environment: ${self:custom.environment.${self:provider.stage}}
     events:
       - httpApi:
           path: /world
