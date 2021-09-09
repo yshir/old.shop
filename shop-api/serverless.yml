@@ -14,19 +14,4 @@ package:
     - '!./**'
     - ./bin/**
 
-functions:
-  hello:
-    handler: bin/hello
-    name: ${self:service}-${self:provider.stage}--hello
-    events:
-      - httpApi:
-          path: /hello
-          method: get
-
-  world:
-    handler: bin/world
-    name: ${self:service}-${self:provider.stage}--world
-    events:
-      - httpApi:
-          path: /world
-          method: get
+functions: ${file(functions.yml)}
