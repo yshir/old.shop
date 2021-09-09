@@ -27,7 +27,7 @@ package:
 functions:
   hello:
     handler: bin/hello
-    name: ${self:service}-${self:provider.stage}-hello
+    name: ${self:service}-${self:provider.stage}--hello
     environment: ${self:custom.environment.${self:provider.stage}}
     events:
       - httpApi:
@@ -36,7 +36,7 @@ functions:
 
   world:
     handler: bin/world
-    name: ${self:service}-${self:provider.stage}-world
+    name: ${self:service}-${self:provider.stage}--world
     environment: ${self:custom.environment.${self:provider.stage}}
     events:
       - httpApi:
